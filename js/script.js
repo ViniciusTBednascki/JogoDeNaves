@@ -10,7 +10,8 @@ function start() {
 }
 	
 var jogo = {}
-
+var velocidade=5;
+var posicaoY = parseInt((Math.random() * 324) + 10);
 var TECLA = {
 	W: 87,
 	S: 83,
@@ -35,6 +36,9 @@ function loop() {
 
   movefundo();
   movejogador();
+  moveinimigo1();
+  moveinimigo2();
+  moveamigo();
 
 }
 
@@ -64,5 +68,44 @@ function movejogador() {
 	if (jogo.pressionou[TECLA.D]) {
     
 	}
+
+}
+
+function moveinimigo1() {
+
+	posicaoX = parseInt($("#inimigo1").css("left"));
+	$("#inimigo1").css("left",posicaoX-velocidade);
+	$("#inimigo1").css("top",posicaoY);
+		
+  if (posicaoX<=0) {
+    posicaoY = parseInt((Math.random() * 324) + 10);
+    $("#inimigo1").css("left",694);
+    $("#inimigo1").css("top",posicaoY);
+      
+  }
+}
+
+
+function moveinimigo2() {
+  posicaoX = parseInt($("#inimigo2").css("left"));
+  $("#inimigo2").css("left",posicaoX-3);
+    
+  if (posicaoX<=0) {
+
+    $("#inimigo2").css("left",775);
+      
+  }
+}
+
+function moveamigo() {
+	
+	posicaoX = parseInt($("#amigo").css("left"));
+	$("#amigo").css("left",posicaoX+2);
+				
+		if (posicaoX>906) {
+			
+		  $("#amigo").css("left",0);
+					
+		}
 
 }
